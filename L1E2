@@ -1,0 +1,42 @@
+#include <iostream>
+
+using namespace std;
+const int SIZE = 5;
+
+int main(){
+	int data[SIZE] = {1,3,2,5,4};
+	int total = 0, *ptr;
+	
+	ptr = data;
+	
+	cout << *ptr++ << endl;
+	cout << *++ptr << endl;
+	cout << *ptr-- << endl;
+	cout << *--ptr << endl;
+	/* explanation for the output for about cout : 
+		the + and - operator has higher precedence than *
+		thus the + and - operator is executed first resulting 
+		in the inexpected output
+	*/
+	
+	//q1
+	ptr = &data[SIZE - 1];
+	int n = SIZE - 1;
+	while(n>=0){
+		cout << *ptr << " ";
+		ptr--;
+		n--;
+	}
+	
+	//q2
+	ptr = &data[0];
+	for(int i = 0; i<SIZE; i++){
+		total = total + *ptr;
+		ptr++;
+	}
+	cout << endl;
+	cout << "Sum of arrray elements = " << total;
+	
+	
+	return 0;
+}
