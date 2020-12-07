@@ -1,0 +1,63 @@
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+
+bool checkBalance(string paranth)
+{
+    stack <char> stck;
+    char ch;
+
+    for(int i = 0; i<paranth.length(); i++)
+    {
+        if(paranth[i] == '(' || paranth[i] == '[' || paranth[i] == '{')
+        {
+            stck.push(paranth[i]);
+            continue;
+        }
+        if(stck.empty())
+            return false;
+        switch (paranth[i])
+        {
+        case ')':
+            ch = stck.top();
+            stck.pop();
+            if(ch == '[' || ch == '{')
+            {
+                return false;
+                break;
+            }
+        case ']':
+            ch = stck.top();
+            stck.pop();
+            if(ch == '(' || ch == '{')
+            {
+                return false;
+                break;
+            }
+        case '}':
+            ch = stck.top();
+            stck.pop();
+            if(ch == '(' || ch == '[')
+            {
+                return false;
+                break;
+            }
+        }
+        return (stck.empty());
+    }
+}
+
+int main()
+{
+    string paranth = "()()";
+    //cout << "Enter parentheses : ";
+    //cin >> paranth;
+
+    if(checkBalance(paranth))
+        cout << "Perfectly balanced, as all things should be";
+    else
+        cout << "Not balanced";
+    return 0;
+}
