@@ -1,0 +1,100 @@
+#include <iostream>
+
+using namespace std;
+
+
+class Queue
+{
+public:
+    int queueArr[100], qRear, qFront, n =100;
+
+    Queue()
+    {
+        qRear = -1;
+        qFront = -1;
+    }
+
+    void Insert()
+    {
+        int val;
+        if(qRear == n-1)
+        {
+            cout << "Queue overflow." << endl;
+        }
+        else
+        {
+            if(qFront == -1)
+            {
+                qFront = 0;
+                cout << "Insert element in queue : " << endl;
+                cin >> val;
+                qRear++;
+                queueArr[qRear] = val;
+            }
+        }
+    }
+
+    void Delete()
+    {
+        if(qFront == -1 || qFront > qRear)
+        {
+            cout << "\nQueue overflow";
+            return;
+        }
+        else
+        {
+            cout << "Element deleted from queue is : " << queueArr[qFront] << endl;
+            qFront++;
+        }
+
+    }
+
+    void Display()
+    {
+        if(qFront == -1)
+        {
+            cout << "\nQueue is empty " << endl;
+        }
+        else
+        {
+            cout << "Queue elements are : ";
+            for(int i = qFront; i<=qRear; i++)
+            {
+                cout << queueArr[i] << " ";
+            }
+            cout << endl;
+        }
+    }
+private:
+
+};
+int main()
+{
+    int input;
+    Queue obj;
+    cout << "QUEUE" << endl;
+    cout << "-----------" << endl;
+    cout << "1. Insert element to queue" << endl;
+    cout << "2. Delete element from queue" << endl;
+    cout << "3. Display queue" << endl;
+    cout << "4. Exit program" << endl;
+    do
+    {
+        cout << "Enter your input : ";
+        cin >> input;
+        switch (input)
+        {
+            case 1 : obj.Insert();
+            break;
+            case 2 : obj.Delete();
+            break;
+            case 3 : obj.Display();
+            break;
+            case 4 : cout << "Exiting program...." << endl;
+            return 1;
+            break;
+            default : cout << "Invalid choice" << endl;
+        }
+    }while(input != 4);
+    return 0;
+}
